@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Roue de la Fortune - Gagnez des codes promos">
+    <title>Roue de la Fortune</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Modal de collecte email -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-icon">✨</div>
+            <h2>Tentez Votre Chance !</h2>
+            <p>Tournez la roue et gagnez jusqu'à <span class="highlight">20% de réduction</span> !</p>
+            
+            <div class="input-group">
+                <span class="input-icon">📧</span>
+                <input type="email" id="email" placeholder="Votre email" required>
+            </div>
+            
+            <button class="btn-primary" onclick="spin()">TOURNER LA ROUE 🎯</button>
+            
+            <p class="privacy">🔒 Vos données sont sécurisées</p>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="container hidden" id="main">
+        <h1>🎡 Votre Marque</h1>
+        <p class="subtitle" id="subtitle">Bonne chance !</p>
+
+        <!-- Roue -->
+        <div class="wheel-wrapper">
+            <div class="arrow"></div>
+            <div class="wheel" id="wheel">
+                <!-- Les segments seront créés par JavaScript -->
+            </div>
+        </div>
+
+        <!-- Résultat -->
+        <div class="result hidden" id="result">
+            <div class="result-emoji" id="emoji"></div>
+            <h3>Vous avez gagné :</h3>
+            <div class="result-prize" id="prize"></div>
+            
+            <!-- Demande d'avis -->
+            <div class="review-box" id="reviewBox">
+                <h4>⭐ Laissez un avis pour débloquer votre code !</h4>
+                <p>Partagez votre expérience sur Google</p>
+                <button class="btn btn-review" onclick="openReview()">⭐ Laisser un avis</button>
+            </div>
+
+            <!-- Code promo -->
+            <div class="code-box hidden" id="codeBox">
+                <div class="code-label">Votre code promo :</div>
+                <div class="code-value" id="code"></div>
+                <div class="code-thanks">✅ Merci pour votre avis !</div>
+            </div>
+
+            <!-- Bouton d'utilisation -->
+            <button class="btn btn-use hidden" id="useBtn">Utiliser maintenant →</button>
+        </div>
+    </div>
+
+    <!-- Scripts - ORDRE IMPORTANT -->
+    <script src="config.js"></script>
+    <script src="wheel.js"></script>
+    <script src="email.js"></script>
+    <script src="storage.js"></script>
+    <script src="main.js"></script>
+    
+    <!-- Script d'initialisation -->
+    <script>
+        // Variables globales nécessaires (utiliser `var` pour exposer sur `window`)
+        var app;
+        
+        // Fonctions globales appelées par les boutons HTML
+        function spin() {
+            if (app) {
+                app.start();
+            } else {
+                console.error('App non initialisée');
+            }
+        }
+        
+        function openReview() {
+            if (app) {
+                app.openReview();
+            } else {
+                console.error('App non initialisée');
+            }
+        }
+    </script>
+</body>
+</html>
